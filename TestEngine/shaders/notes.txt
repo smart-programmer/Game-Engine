@@ -1,0 +1,2 @@
+what is a texture sampler?:
+when we reserved a texture unit for our texture in the application to put our texture in we needed a way to acces that texture in the shader and a sampler is just that a sampler is getting that texture from the texture unit that we put the texture in so we can use the texture in the shader 

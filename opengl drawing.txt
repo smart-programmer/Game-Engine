@@ -1,0 +1,29 @@
+uint vertexArray = Gl.GenVertexArray();
+uint buffer = Gl.GenBuffer();
+uint[] buffers = { buffer };
+uint[] vertexArrays = { vertexArray };
+Gl.BindBuffer(BufferTarget.ArrayBuffer, buffer);
+Gl.BufferData(BufferTarget.ArrayBuffer, (uint)(vertices.Length * sizeof(float)), vertices, BufferUsage.StaticDraw);
+Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
+Gl.BindVertexArray(vertexArray);
+Gl.BindBuffer(BufferTarget.ArrayBuffer, buffer);
+Gl.VertexAttribPointer(0, 3, VertexAttribType.Float, false, 0, IntPtr.Zero);
+Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
+
+// Render here
+Gl.ClearColor(1, 0, 0, 1);
+Gl.Clear(ClearBufferMask.ColorBufferBit);
+Gl.BindVertexArray(vertexArray);
+Gl.EnableVertexAttribArray(0);
+
+Gl.DrawArrays(PrimitiveType.Triangles, 0, vertices.Length / 3);
+Gl.DisableVertexAttribArray(0);
+Gl.BindVertexArray(0);
+
+
+
+
+  
+Gl.DeleteBuffers(vertexArrays);
+Gl.DeleteBuffers(buffers);

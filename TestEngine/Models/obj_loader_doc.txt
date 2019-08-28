@@ -1,0 +1,10 @@
+1 - extract all the information from the .obj file and put them in the appropriate list/array
+
+2 - order normals and uvs to match the veretx positions
+
+NOTES:
+	1 - final uv array is the size of: (vertexPositions.Count / 1.5)
+	this is a equation to calculate how many texture coords there has 
+	to be for the given number of vertex position knowing that 
+	position are composed of xyz and uvs are just xy
+	another way the discribe the equation is ((vertexPositions.Count / 1/3) + (veretxPositions.Count /1/3)): one column.count plus one column.count
