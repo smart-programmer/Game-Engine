@@ -8,8 +8,6 @@ out vec2 pass_textureCoords;
 out vec3 surface_normals;
 out vec3 to_light_vector;
 out vec3 diffused;
-out vec3 to_camera_vector;
-
 
 uniform mat4 transformationMatrix;
 uniform mat4 projectionMatrix;
@@ -24,9 +22,5 @@ void main(void){
 	surface_normals = (transformationMatrix * vec4(normals, 0.0)).xyz;
 
 	to_light_vector = lightPosition - (transformationMatrix * vec4(positions, 1.0)).xyz;
-
-	to_camera_vector = (inverse(viewMatrix) * vec4(0.0, 0.0, 0.0, 1.0)).xyz - (transformationMatrix * vec4(positions, 1.0)).xyz; // or just pass the camera positions as a uniform 
-	
-		
 
 }

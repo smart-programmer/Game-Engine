@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenGL;
+using System.Collections.Generic;
 
 namespace TestEngine
 {
@@ -11,7 +12,7 @@ namespace TestEngine
         {
             Gl.Enable(EnableCap.DepthTest);
             // clear previous rendered colours and replace them with the color red
-            Gl.ClearColor(0, 1, 0, 1);
+            Gl.ClearColor(0, 0, 0, 1);
             Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
         }
 
@@ -19,13 +20,37 @@ namespace TestEngine
         {
             UseViewMatrix(shader, camera);
             UseTransformationMatrix(obj, shader);
+            shader.loadModelspecularLightData(obj.texturedModel.metaData.shineDamper, obj.texturedModel.metaData.reflectivity);
             Gl.BindVertexArray(obj.texturedModel.vaoID);
             Gl.EnableVertexAttribArray(0);
             Gl.EnableVertexAttribArray(1);
+            Gl.EnableVertexAttribArray(2);
             UseTexture(TextureUnit.Texture0, obj.texturedModel.TextureID);
             Gl.DrawElements(PrimitiveType.Triangles, obj.texturedModel.Indices.Length, DrawElementsType.UnsignedInt, IntPtr.Zero);
             Gl.DisableVertexAttribArray(0);
+            Gl.DisableVertexAttribArray(1);
+            Gl.DisableVertexAttribArray(2);
+            Gl.BindVertexArray(0);
+        }
+
+        public static void render_multiple(List<Entity> objs, StaticShader shader, Camera camera)
+        {
+            UseViewMatrix(shader, camera);
+            shader.loadModelspecularLightData(objs[0].texturedModel.metaData.shineDamper, objs[0].texturedModel.metaData.reflectivity);
+            Gl.BindVertexArray(objs[0].texturedModel.vaoID);
+            Gl.EnableVertexAttribArray(0);
             Gl.EnableVertexAttribArray(1);
+            Gl.EnableVertexAttribArray(2);
+            UseTexture(TextureUnit.Texture0, objs[0].texturedModel.TextureID);
+            for (int i = 0; i < objs.Count; i++)
+            {
+                UseTransformationMatrix(objs[i], shader);
+                Gl.DrawElements(PrimitiveType.Triangles, objs[i].texturedModel.Indices.Length, DrawElementsType.UnsignedInt, IntPtr.Zero);
+            }
+            
+            Gl.DisableVertexAttribArray(0);
+            Gl.DisableVertexAttribArray(1);
+            Gl.DisableVertexAttribArray(2);
             Gl.BindVertexArray(0);
         }
 

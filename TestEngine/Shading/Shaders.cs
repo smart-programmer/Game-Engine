@@ -14,6 +14,10 @@ namespace TestEngine
         private int location_TransformationMatrix { set; get; }
         private int location_projectionMatrix { set; get; }
         private int location_ViewMatrix { set; get; }
+        private int location_LightPosition { set; get; }
+        private int location_LightColour { set; get; }
+        private int location_ShineDamper { set; get; }
+        private int location_reflectivity { set; get; }
 
         public StaticShader() : base(vertexshaderString, fragmentShader) { }
 
@@ -22,6 +26,7 @@ namespace TestEngine
         {
             BindAttribute("positions", 0); // this tells the shaders that that the vertex positions are stored in attribute list index 0 of the vao
             BindAttribute("textureCoords", 1);
+            BindAttribute("normals", 2);
         }
 
         protected override void GetAllUniformLocations()
@@ -30,6 +35,10 @@ namespace TestEngine
             location_TransformationMatrix = GetUniformLocation("transformationMatrix");
             location_projectionMatrix = GetUniformLocation("projectionMatrix");
             location_ViewMatrix = GetUniformLocation("viewMatrix");
+            location_LightPosition = GetUniformLocation("lightPosition");
+            location_LightColour = GetUniformLocation("lightColour");
+            location_ShineDamper = GetUniformLocation("shineDamper");
+            location_reflectivity = GetUniformLocation("reflectivity");
         }
 
         public void loadTransformationMatrix(Matrix4x4f Tmatrix)
@@ -45,6 +54,18 @@ namespace TestEngine
         public void loadViewMatrix(Matrix4x4f Vmatrix)
         {
             LoadMatrix4f(location_ViewMatrix, Vmatrix);
+        }
+
+        public void loadLightInformation(Light light)
+        {
+            LoadVec3(location_LightPosition, light.Position);
+            LoadVec3(location_LightColour, light.Colour);
+        }
+
+        public void loadModelspecularLightData(float shineDamper, float reflectivity)
+        {
+            LoadFloat(location_ShineDamper, shineDamper);
+            LoadFloat(location_reflectivity, reflectivity);
         }
     }
 }

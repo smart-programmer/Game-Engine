@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Entities\Camera.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Light.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\ModelsUtils.cs" />
     <Compile Include="Models\ObjFilesHandler.cs" />

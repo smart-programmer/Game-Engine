@@ -4,7 +4,7 @@ using Glfw3;
 
 namespace TestEngine
 {
-    class Camera
+    public class Camera
     {
         public Vertex3f position = new Vertex3f(0, 0, 0);
         public float pitch; // x rotation

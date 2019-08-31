@@ -9,7 +9,7 @@ namespace TestEngine
         public static List<uint> vaoIDs = new List<uint>(); // this must be in this form because puting it in the form: public static List<uint> vaoIDs { set; get; } will generate a NullReferenceException error
         public static List<uint> vboIDs = new List<uint>();
 
-        public static TexturedIndexedModel SetObject(float[] vertices, uint[] indices, float[] textureCoords, Texture texture)
+        public static TexturedIndexedModel SetObject(float[] vertices, uint[] indices, float[] textureCoords, Texture texture, float[] normals)
         {
             uint vao = CreateVao();
             Gl.BindVertexArray(vao);
@@ -18,8 +18,11 @@ namespace TestEngine
             StoreDataInVbo(Positionsvbo, vertices);
             uint textureCoordsVBO = CreateVbo();
             StoreDataInVbo(textureCoordsVBO, textureCoords);
+            uint normalsVBO = CreateVbo();
+            StoreDataInVbo(normalsVBO, normals);
             PutVboInAtribbuteList(0, Positionsvbo, 3);
             PutVboInAtribbuteList(1, textureCoordsVBO, 2);
+            PutVboInAtribbuteList(2, normalsVBO, 3);
             Gl.BindVertexArray(0);
             return new TexturedIndexedModel(vao, vertices, indices, texture.textureID, textureCoords);
         }
@@ -65,6 +68,25 @@ namespace TestEngine
         {
             Gl.DeleteBuffers(vaoIDs.ToArray());
             Gl.DeleteBuffers(vboIDs.ToArray());
+        }
+    }
+
+
+
+    public class ModelMetaData
+    {
+        public float shineDamper = 1;
+        public float reflectivity = 0;
+
+        public ModelMetaData()
+        {
+
+        }
+
+        public ModelMetaData(float shine_damper, float Reflectivity)
+        {
+            shineDamper = shine_damper;
+            reflectivity = Reflectivity;
         }
     }
 }

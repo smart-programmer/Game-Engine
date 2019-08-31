@@ -43,7 +43,7 @@ namespace TestEngine
                 }
                 if (splitedLine[0] == "vn")
                 {
-                    normals.Add(new normalCoordinate(float.Parse(splitedLine[1]), float.Parse(splitedLine[1]), float.Parse(splitedLine[3])));
+                    normals.Add(new normalCoordinate(float.Parse(splitedLine[1]), float.Parse(splitedLine[2]), float.Parse(splitedLine[3])));
                 }
                 if (splitedLine[0] == "f")
                 {
@@ -75,8 +75,8 @@ namespace TestEngine
                 }
             }
           
-            float[] newNormals = new float[normals.Count * 3];
-            float[] newTextureUVS = new float[textureCoords.Count * 2];
+            float[] newNormals = new float[vertices.Count];
+            float[] newTextureUVS = new float[(int)(vertices.Count / 1.5)];
                 
             OrderInformation(ref textureCoords, normals, faces, vertices.Count, ref newTextureUVS, ref newNormals);
 
@@ -126,7 +126,9 @@ namespace TestEngine
                     normalCoordinatesArray[j + 1] = normalCoordinates[a].y;
                     normalCoordinatesArray[j + 2] = normalCoordinates[a].z;
                 }
+                a++;
             }
+
 
             newTextureUVS = textureCoordinatesArray;
             newNormals = normalCoordinatesArray;

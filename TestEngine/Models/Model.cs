@@ -53,6 +53,7 @@ namespace TestEngine
         public uint[] Indices { set; get; }
         public uint TextureID { set; get; }
         public float[] TextureCoords { set; get; }
+        public ModelMetaData metaData = new ModelMetaData();
 
         public TexturedIndexedModel(uint vaoid, float[] vertices, uint[] indices, uint textureId, float[] textureCoords) : base(vaoid, vertices)
         {

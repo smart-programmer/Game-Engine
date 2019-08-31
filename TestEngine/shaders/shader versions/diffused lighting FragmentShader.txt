@@ -1,0 +1,24 @@
+#version 400 core
+
+in vec2 pass_textureCoords;
+in vec3 surface_normals;
+in vec3 to_light_vector;
+
+out vec4 out_Color;
+
+uniform sampler2D textureSampler0;
+uniform sampler2D textureSampler1;
+uniform vec3 lightColour;
+
+void main(void){
+
+	vec3 unite_surfaceNormals = normalize(surface_normals);
+	vec3 unite_toLightVector = normalize(to_light_vector);
+
+	float brightness = dot(unite_surfaceNormals, unite_toLightVector);
+	float clampedBrightness = max(brightness, 0.0);
+	vec3 diffusedLighting = clampedBrightness * lightColour;
+
+	out_Color = vec4(diffusedLighting, 1.0) * texture(textureSampler1, pass_textureCoords);
+
+}
