@@ -52,112 +52,136 @@ namespace TestEngine
 
 
 
-        //    float[] CubeVerticesrtices = {
-        //        -0.5f,0.5f,-0.5f,
-        //        -0.5f,-0.5f,-0.5f,
-        //        0.5f,-0.5f,-0.5f,
-        //        0.5f,0.5f,-0.5f,
+            //    float[] CubeVerticesrtices = {
+            //        -0.5f,0.5f,-0.5f,
+            //        -0.5f,-0.5f,-0.5f,
+            //        0.5f,-0.5f,-0.5f,
+            //        0.5f,0.5f,-0.5f,
 
-        //        -0.5f,0.5f,0.5f,
-        //        -0.5f,-0.5f,0.5f,
-        //        0.5f,-0.5f,0.5f,
-        //        0.5f,0.5f,0.5f,
+            //        -0.5f,0.5f,0.5f,
+            //        -0.5f,-0.5f,0.5f,
+            //        0.5f,-0.5f,0.5f,
+            //        0.5f,0.5f,0.5f,
 
-        //        0.5f,0.5f,-0.5f,
-        //        0.5f,-0.5f,-0.5f,
-        //        0.5f,-0.5f,0.5f,
-        //        0.5f,0.5f,0.5f,
+            //        0.5f,0.5f,-0.5f,
+            //        0.5f,-0.5f,-0.5f,
+            //        0.5f,-0.5f,0.5f,
+            //        0.5f,0.5f,0.5f,
 
-        //        -0.5f,0.5f,-0.5f,
-        //        -0.5f,-0.5f,-0.5f,
-        //        -0.5f,-0.5f,0.5f,
-        //        -0.5f,0.5f,0.5f,
+            //        -0.5f,0.5f,-0.5f,
+            //        -0.5f,-0.5f,-0.5f,
+            //        -0.5f,-0.5f,0.5f,
+            //        -0.5f,0.5f,0.5f,
 
-        //        -0.5f,0.5f,0.5f,
-        //        -0.5f,0.5f,-0.5f,
-        //        0.5f,0.5f,-0.5f,
-        //        0.5f,0.5f,0.5f,
+            //        -0.5f,0.5f,0.5f,
+            //        -0.5f,0.5f,-0.5f,
+            //        0.5f,0.5f,-0.5f,
+            //        0.5f,0.5f,0.5f,
 
-        //        -0.5f,-0.5f,0.5f,
-        //        -0.5f,-0.5f,-0.5f,
-        //        0.5f,-0.5f,-0.5f,
-        //        0.5f,-0.5f,0.5f
+            //        -0.5f,-0.5f,0.5f,
+            //        -0.5f,-0.5f,-0.5f,
+            //        0.5f,-0.5f,-0.5f,
+            //        0.5f,-0.5f,0.5f
 
-        //};
+            //};
 
-        //    uint[] Cubeindices = {
-        //        0,1,3,
-        //        3,1,2,
-        //        4,5,7,
-        //        7,5,6,
-        //        8,9,11,
-        //        11,9,10,
-        //        12,13,15,
-        //        15,13,14,
-        //        16,17,19,
-        //        19,17,18,
-        //        20,21,23,
-        //        23,21,22
+            //    uint[] Cubeindices = {
+            //        0,1,3,
+            //        3,1,2,
+            //        4,5,7,
+            //        7,5,6,
+            //        8,9,11,
+            //        11,9,10,
+            //        12,13,15,
+            //        15,13,14,
+            //        16,17,19,
+            //        19,17,18,
+            //        20,21,23,
+            //        23,21,22
 
-        //};
+            //};
 
-        //    float[] squarevertices =
-        //    {
-        //        -0.5f, 0.5f, 0f, //[0]top left v
-        //        -0.5f, -0.5f, 0f, //[1]bottom left v
-        //        0.5f, 0.5f, 0f, //[2]top right v
-        //        0.5f, -0.5f, 0f //[3]bottom right v
-        //    };
-        //    float[] textureCoords = {
+            //    float[] squarevertices =
+            //    {
+            //        -0.5f, 0.5f, 0f, //[0]top left v
+            //        -0.5f, -0.5f, 0f, //[1]bottom left v
+            //        0.5f, 0.5f, 0f, //[2]top right v
+            //        0.5f, -0.5f, 0f //[3]bottom right v
+            //    };
+            //    float[] textureCoords = {
 
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0,
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0,
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0,
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0,
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0,
-        //        0,0,
-        //        0,1,
-        //        1,1,
-        //        1,0
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0,
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0,
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0,
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0,
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0,
+            //        0,0,
+            //        0,1,
+            //        1,1,
+            //        1,0
 
 
-        //};
+            //};
 
-        //    float[] colors = {
-        //        1, 1, 1,
-        //        0, 0, 0,
-        //        0.5f, 0.5f, 0,
-        //        0, 0, 1
-        //    };
+            //    float[] colors = {
+            //        1, 1, 1,
+            //        0, 0, 0,
+            //        0.5f, 0.5f, 0,
+            //        0, 0, 1
+            //    };
 
-        //    uint[] indices =
-        //    {
-        //        0, 1, 2, //top left triangle
-        //        2, 3, 1 // bottom right triangle
-        //    };
+            //    uint[] indices =
+            //    {
+            //        0, 1, 2, //top left triangle
+            //        2, 3, 1 // bottom right triangle
+            //    };
 
-        //    float[] uvtextureCoords =
-        //    {
-        //        0, 0,// coords for v0
-        //        0, 1, // coords for v1
-        //        1, 0, // coords for v2
-        //        1, 1 // coords for v3
-        //    }; // same order that we put vertices in
+            //    float[] uvtextureCoords =
+            //    {
+            //        0, 0,// coords for v0
+            //        0, 1, // coords for v1
+            //        1, 0, // coords for v2
+            //        1, 1 // coords for v3
+            //    }; // same order that we put vertices in
+
+
+
+
+
+
+
+
+            //public void render(Entity obj, Camera camera)
+            //{
+            //    UseViewMatrix(camera);
+            //    UseTransformationMatrix(obj);
+            //    shader.loadModelspecularLightData(obj.texturedModel.metaData.shineDamper, obj.texturedModel.metaData.reflectivity);
+            //    Gl.BindVertexArray(obj.texturedModel.vaoID);
+            //    Gl.EnableVertexAttribArray(0);
+            //    Gl.EnableVertexAttribArray(1);
+            //    Gl.EnableVertexAttribArray(2);
+            //    UseTexture(TextureUnit.Texture0, obj.texturedModel.TextureID);
+            //    Gl.DrawElements(PrimitiveType.Triangles, obj.texturedModel.Indices.Length, DrawElementsType.UnsignedInt, IntPtr.Zero);
+            //    Gl.DisableVertexAttribArray(0);
+            //    Gl.DisableVertexAttribArray(1);
+            //    Gl.DisableVertexAttribArray(2);
+            //    Gl.BindVertexArray(0);
+            //}
 
 
         }

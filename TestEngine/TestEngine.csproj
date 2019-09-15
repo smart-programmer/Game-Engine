@@ -64,17 +64,22 @@
   <ItemGroup>
     <Compile Include="Entities\Camera.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Fog.cs" />
     <Compile Include="Entities\Light.cs" />
+    <Compile Include="Entities\Sky.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\ModelsUtils.cs" />
     <Compile Include="Models\ObjFilesHandler.cs" />
     <Compile Include="OldStuff.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\MasterRenderer.cs" />
     <Compile Include="Rendering\Renderer.cs" />
+    <Compile Include="Rendering\TerrainRenderer.cs" />
     <Compile Include="SetterAndCreator.cs" />
     <Compile Include="Shading\BaseShaderProgram.cs" />
     <Compile Include="Shading\Shaders.cs" />
+    <Compile Include="Terrains\Terrain.cs" />
     <Compile Include="Texturing\Textures.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>

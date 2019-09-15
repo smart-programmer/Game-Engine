@@ -42,7 +42,7 @@ namespace TestEngine
 
             Gl.GenerateMipmap(TextureTarget.Texture2d);
 
-            Gl.TexImage2D(TextureTarget.Texture2d, 0, InternalFormat.Rgb, image.Width, image.Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, pixeslData); // InternalFormat is what we want the texture to be in opengl for example we might want it as rgb not rgba and opengl will convert it to what we want but PixelFormat is asking us what is the original image's format so that when we give opengl pixel bytes it knosw how to interpret them
+            Gl.TexImage2D(TextureTarget.Texture2d, 0, InternalFormat.Rgba, image.Width, image.Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, pixeslData); // InternalFormat is what we want the texture to be in opengl for example we might want it as rgb not rgba and opengl will convert it to what we want but PixelFormat is asking us what is the original image's format so that when we give opengl pixel bytes it knows how to interpret them  NOTE: is you make InternalFormat rgb you can't acces the a value 
             Gl.BindTexture(TextureTarget.Texture2d, 0);
         }
 

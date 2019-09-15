@@ -77,9 +77,11 @@ namespace TestEngine
           
             float[] newNormals = new float[vertices.Count];
             float[] newTextureUVS = new float[(int)(vertices.Count / 1.5)];
+
                 
             OrderInformation(ref textureCoords, normals, faces, vertices.Count, ref newTextureUVS, ref newNormals);
 
+            Console.WriteLine(String.Format("number of vertices: {0}", vertices.Count));
 
             return new ParsedObjFile(vertices.ToArray(), indicees.ToArray(), newTextureUVS, newNormals);
         }

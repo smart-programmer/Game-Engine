@@ -77,6 +77,8 @@ namespace TestEngine
     {
         public float shineDamper = 1;
         public float reflectivity = 0;
+        public bool hasTransparency = false;
+        public bool useFakeLighting = false;
 
         public ModelMetaData()
         {

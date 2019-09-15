@@ -19,7 +19,7 @@ namespace TestEngine
     {
         private static float FOV = 70;
         private static float NEAR_PLANE = 0.1f;
-        private static float FAR_PLANE = 1000;
+        private static float FAR_PLANE = 10000;
 
 
         public static float[] GetMatrix4fBuffer(Matrix4x4f matrix)
@@ -90,5 +90,19 @@ namespace TestEngine
         }
     }
     
+
+    public class RGBColor
+    {
+        public float R { set; get; }
+        public float G { set; get; }
+        public float B { set; get; }
+
+        public RGBColor(float r, float g, float b)
+        {
+            R = r;
+            G = g;
+            B = b;
+        }
+    }
 
 }
