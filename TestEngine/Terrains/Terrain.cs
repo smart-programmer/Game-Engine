@@ -7,7 +7,7 @@ namespace TestEngine
     class Terrain
     {
         private uint VERTEX_COUNT = 128; // width = 128, height = 128
-        private int SIZE = 800;
+        private int SIZE = 5000;
 
         public Vertex3f Position { set; get; }
         public Vertex3f Rotation { set; get; }
@@ -15,14 +15,16 @@ namespace TestEngine
 
         public TexturedIndexedModel terrainModel { set; get; }
 
-        public Texture texture { set; get; }
+        public TerrainTexturePack texturePack { set; get; }
+        public Texture blendMap { set; get; }
 
-        public Terrain(Vertex3f position, Vertex3f rotation, float scale,  Texture textuRE)
+        public Terrain(Vertex3f position, Vertex3f rotation, float scale, TerrainTexturePack TexturePack, Texture BlendMap)
         {
             Position = position;
             Rotation = rotation;
             Scale = scale;
-            texture = textuRE;
+            texturePack = TexturePack;
+            blendMap = BlendMap;
             terrainModel = generateTerrainModel();
         }
 
@@ -78,7 +80,7 @@ namespace TestEngine
             }
 
 
-            return ModelsCreatorAndHandler.SetObject(vertices, indices, textureCoords, texture, normals);
+            return ModelsCreatorAndHandler.SetObject(vertices, indices, textureCoords, blendMap, normals);
         }
 
 

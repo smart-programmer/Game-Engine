@@ -9,7 +9,12 @@ in float visibility;
 
 out vec4 Color;
 
-uniform sampler2D textureSampler;
+uniform sampler2D backgroundTextureRepresentedByBlack;
+uniform sampler2D textureRepresentedByRed;
+uniform sampler2D textureRepresentedByGreen;
+uniform sampler2D textureRepresentedByBlue;
+uniform sampler2D blendMap;
+
 uniform vec3 lightColour;
 uniform float shineDamper;
 uniform float reflectivity;
@@ -37,7 +42,23 @@ void main(void){
 	
 	// end specular lighting calculations
 
-	Color = vec4(diffusedLighting, 1.0) * texture(textureSampler, pass_textureCoords) + vec4(specularLight, 1);
+	// start multy textering code
+
+	vec4 blendMapPixelColor = texture(blendMap, pass_textureCoords);
+
+	vec2 tiledTextureCoords = pass_textureCoords  * 60;
+
+	float amount_of_blackInBlendMapPixel = 1 - (blendMapPixelColor.r + blendMapPixelColor.g + blendMapPixelColor.b); // this will be 1 when the pixel is black
+	vec4 grassTextureColorAmount = amount_of_blackInBlendMapPixel * texture(backgroundTextureRepresentedByBlack, tiledTextureCoords);
+	vec4 dirtTextureColorAmount = blendMapPixelColor.r * texture(textureRepresentedByRed, tiledTextureCoords);
+	vec4 pinkFlowerTextureColorAmount = blendMapPixelColor.g * texture(textureRepresentedByGreen, tiledTextureCoords);
+	vec4 pathWayTextureColorAmount = blendMapPixelColor.b * texture(textureRepresentedByBlue, tiledTextureCoords);
+
+	vec4 totalColor = grassTextureColorAmount + dirtTextureColorAmount + pinkFlowerTextureColorAmount + pathWayTextureColorAmount;
+
+	// end multy textering code
+
+	Color = vec4(diffusedLighting, 1.0) * totalColor + vec4(specularLight, 1);
 	Color = mix(vec4(skyColor, 1.0), Color, visibility);
 
 }

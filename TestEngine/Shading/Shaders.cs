@@ -109,6 +109,11 @@ namespace TestEngine
         private int location_skyColor { set; get; }
         private int location_fogDensity { set; get; }
         private int location_fogGradient { set; get; }
+        private int location_backgroundTextureRepresentedByBlack { set; get; }
+        private int location_textureRepresentedByRed { set; get; }
+        private int location_textureRepresentedByGreen { set; get; }
+        private int location_textureRepresentedByBlue { set; get; }
+        private int location_blendMap { set; get; }
 
 
         public TerrainShader() : base(vertexshaderString, fragmentShader) { }
@@ -134,6 +139,11 @@ namespace TestEngine
             location_skyColor = GetUniformLocation("skyColor");
             location_fogDensity = GetUniformLocation("fogDensity");
             location_fogGradient = GetUniformLocation("fogGradient");
+            location_backgroundTextureRepresentedByBlack = GetUniformLocation("backgroundTextureRepresentedByBlack");
+            location_textureRepresentedByRed = GetUniformLocation("textureRepresentedByRed");
+            location_textureRepresentedByGreen = GetUniformLocation("textureRepresentedByGreen");
+            location_textureRepresentedByBlue = GetUniformLocation("textureRepresentedByBlue");
+            location_blendMap = GetUniformLocation("blendMap");
         }
 
         public void loadTransformationMatrix(Matrix4x4f Tmatrix)
@@ -172,6 +182,15 @@ namespace TestEngine
         public void loadSkyColor(Sky sky)
         {
             LoadVec3(location_skyColor, new Vertex3f(sky.Color.R, sky.Color.G, sky.Color.B));
+        }
+
+        public void loadTexturePackUnitNumbers()
+        {
+            loadInt(location_backgroundTextureRepresentedByBlack, 0);
+            loadInt(location_textureRepresentedByRed, 1);
+            loadInt(location_textureRepresentedByGreen, 2);
+            loadInt(location_textureRepresentedByBlue, 3);
+            loadInt(location_blendMap, 4);
         }
     }
 }

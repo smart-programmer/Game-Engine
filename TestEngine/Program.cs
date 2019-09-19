@@ -50,17 +50,21 @@ namespace TestEngine
             int rand = r.Next(-100, 100);
             int x = r.Next(30, 80);
             int f = r.Next(1, 50);
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 0; i++)
             {
                 entities.Add(new Entity(grass, new Vertex3f((float)x, 0, (float)f), new Vertex3f(0, 0, 0),9));
                 //rand = r.Next(-100, 100) * 4;
-                x = r.Next(30, 80) * 13 - 720;
-                f = r.Next(-100, -20) * 6 - 100;
+                x = r.Next(30, 80) * 45 - 2000;
+                f = r.Next(-100, -20) * 40 + 300;
                 
             }
 
             List<Terrain> terrains = new List<Terrain>();
-            terrains.Add(new Terrain(new Vertex3f(-400, 0, -800), new Vertex3f(0, 0, 0), 1,  TextureLoader.getTexture("..\\..\\res/grass.jpg")));
+            TerrainTexturePack pack = new TerrainTexturePack(TextureLoader.getTexture("..\\..\\res/grassy2.png"),
+                TextureLoader.getTexture("..\\..\\res/mud.png"),
+                TextureLoader.getTexture("..\\..\\res/grassFlowers.png"),
+                TextureLoader.getTexture("..\\..\\res/path_resized.png"));
+            terrains.Add(new Terrain(new Vertex3f(-2500, 0, -5000), new Vertex3f(0, 0, 0), 1, pack, TextureLoader.getTexture("..\\..\\res/valgrind.png")));
 
             MasterRenderer masterRenderer = new MasterRenderer();
         

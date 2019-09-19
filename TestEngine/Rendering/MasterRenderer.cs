@@ -18,9 +18,9 @@ namespace TestEngine
         private TerrainRenderer terrainRenderer { set; get; }
 
         public Camera camera = new Camera(new Vertex3f(0, 100, 0), 0, 0, 0);
-        private Light light = new Light(new Vertex3f(50, 500, 20), new Vertex3f(1f, 1f, 1f));
+        private Light light = new Light(new Vertex3f(-100, 1000, -500), new Vertex3f(1f, 1f, 1f));
 
-        private Fog fog = new Fog(0.0039f, 1f); // 0.0035f, 5f
+        private Fog fog = new Fog(0f, 1f); // 0.0035f, 5f 0.0039f, 1f
         private Sky sky = new Sky(new RGBColor(0.5f, 0.5f, 0.5f)); // light blue: 0.52f, 0.8f, 0.92f
 
         private Dictionary<TexturedIndexedModel, List<Entity>> entitiesHashMap = new Dictionary<TexturedIndexedModel, List<Entity>>();
@@ -33,6 +33,9 @@ namespace TestEngine
             terrainShaderProgam = new TerrainShader();
             terrainRenderer = new TerrainRenderer(terrainShaderProgam);
             UseProjectionMatrix(width, height); // we only need to load the projection matrix one time because it's not going to change unless we resize the window
+            terrainShaderProgam.StartShaderProgram();
+            terrainShaderProgam.loadTexturePackUnitNumbers();
+            terrainShaderProgam.StopShaderProgram();
             Gl.Enable(EnableCap.CullFace);
             Gl.CullFace(CullFaceMode.Back);
         }

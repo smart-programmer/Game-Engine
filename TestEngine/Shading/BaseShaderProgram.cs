@@ -98,9 +98,14 @@ namespace TestEngine
             Gl.Uniform3f(Location, 1, value);
         }
 
-        public void LoadFloat(int Location, float value)
+        protected void LoadFloat(int Location, float value)
         {
             Gl.Uniform1f(Location, 1, value);
+        }
+
+        protected void loadInt(int location, int value)
+        {
+            Gl.Uniform1i(location, 1, value);
         }
 
         protected void LoadBoolean(int Location, bool value)

@@ -1,0 +1,56 @@
+#version 400 core
+
+in vec2 pass_textureCoords;
+in vec3 surface_normals;
+in vec3 to_light_vector;
+in vec3 to_camera_vector;
+in float visibility;
+
+out vec4 out_Color;
+
+uniform sampler2D textureSampler0;
+uniform sampler2D textureSampler1;
+uniform vec3 lightColour;
+uniform float shineDamper;
+uniform float reflectivity;
+uniform vec3 skyColor;
+
+void main(void){
+	// diffused lighting calculatinos
+	
+	vec3 unit_surfaceNormals = normalize(surface_normals);
+	vec3 unit_toLightVector = normalize(to_light_vector);
+
+	float brightness = dot(unit_surfaceNormals, unit_toLightVector);
+	float clampedBrightness = max(brightness, 0.3);
+	vec3 diffusedLighting = clampedBrightness * lightColour;
+
+	// end diffused lighting calculations
+
+	// specular lighting calculations
+	
+	vec3 reflected_fromLightVector = reflect((-1 * to_light_vector), surface_normals);
+	float specular_brightness = dot(normalize(reflected_fromLightVector), normalize(to_camera_vector));
+	float clamped_specular_brightness = max(specular_brightness, 0.0);
+	float final_specular_brightness = pow(clamped_specular_brightness, shineDamper) * reflectivity;
+	
+	// end specular lighting calculations
+	
+	vec3 final_specular_lighting = final_specular_brightness * lightColour;
+
+	vec4 textureColor = texture(textureSampler1, pass_textureCoords);
+
+	// start transperansy code
+	
+	if(textureColor.a < 0.5){ // https://learnopengl.com/Advanced-OpenGL/Blending
+		discard;
+	}
+	
+	// end transparensy code
+
+	
+
+	out_Color = vec4(diffusedLighting, 1.0) * textureColor + vec4(final_specular_lighting, 1.0);
+	out_Color = mix(vec4(skyColor, 1.0), out_Color, visibility);
+
+}

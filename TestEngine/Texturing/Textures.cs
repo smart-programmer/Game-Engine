@@ -98,4 +98,22 @@ namespace TestEngine
             Gl.DeleteTextures(TexturesIDs.ToArray());
         }
     }
+
+
+
+    public class TerrainTexturePack
+    {
+        public Texture backgroundTextureRepresentedByblack { set; get; }
+        public Texture textureRepresntedByRed { set; get; }
+        public Texture textureRepresentedByGreen { set; get; }
+        public Texture textureRepresentedByBlue { set; get; }
+
+        public TerrainTexturePack(Texture backgroundTexture, Texture redTexture, Texture greenTexture, Texture blueTexture)
+        {
+            backgroundTextureRepresentedByblack = backgroundTexture;
+            textureRepresntedByRed = redTexture;
+            textureRepresentedByGreen = greenTexture;
+            textureRepresentedByBlue = blueTexture;
+        }
+    }
 }

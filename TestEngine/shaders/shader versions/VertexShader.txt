@@ -1,0 +1,59 @@
+#version 400 core
+
+in vec3 positions;
+in vec2 textureCoords;
+in vec3 normals;
+
+out vec2 pass_textureCoords;
+out vec3 surface_normals;
+out vec3 to_light_vector;
+out vec3 diffused;
+out vec3 to_camera_vector;
+out float visibility;
+
+
+uniform mat4 transformationMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform vec3 lightPosition;
+uniform float useFakeLighting;
+uniform float fogDensity;
+uniform float fogGradient;
+
+void main(void){
+
+	gl_Position = projectionMatrix * viewMatrix * transformationMatrix * vec4(positions, 1.0);
+	pass_textureCoords = textureCoords;
+
+	
+	vec3 normals_to_change = normals; // i need to do this because i can't change an in variable directly 
+
+	if (useFakeLighting == 1){ // fake lighitng is just changing the models normals to point up so all the pixels ar lit equally 
+		normals_to_change = vec3(0, 1, 0);
+	}	
+	
+	
+	// start per pixel lighting calculations
+
+	surface_normals = (transformationMatrix * vec4(normals_to_change, 0.0)).xyz;
+
+	to_light_vector = lightPosition - (transformationMatrix * vec4(positions, 1.0)).xyz;
+
+	// end per pixel lighting calculations
+
+	// start specular light calculations
+
+	to_camera_vector = (inverse(viewMatrix) * vec4(0.0, 0.0, 0.0, 1.0)).xyz - (transformationMatrix * vec4(positions, 1.0)).xyz; // or just pass the camera positions as a uniform 
+
+	// end specular light calculations
+	
+	// start fog calculations
+		
+	vec4 positionOfVeretxRelativeToCamera = viewMatrix * transformationMatrix * vec4(positions, 1.0);
+	float distanceOfVeretxFromCamera = length(positionOfVeretxRelativeToCamera.xyz);
+	visibility = exp(-pow((distanceOfVeretxFromCamera * fogDensity), fogGradient));
+	visibility = clamp(visibility, 0, 1); // optional 
+
+	// end fog calculations
+
+}

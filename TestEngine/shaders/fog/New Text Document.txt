@@ -1,0 +1,14 @@
+goal: we're going gto mix the vertices colors with the sky color depending on how far the vertex is from the camera
+
+steps:
+1 - get veretx position in relation to camera
+
+2 - caclulate veretx distance from camera
+
+3 - define the fog's density and gradient
+
+4 put those variables in an equation to produce a visibility variable
+
+5 pass the visibility variable to the fragment shader
+
+6 - mix the output color with the sky color depending on the visibility variable

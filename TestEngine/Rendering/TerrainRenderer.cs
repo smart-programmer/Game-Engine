@@ -17,7 +17,7 @@ namespace TestEngine
         {
             foreach (TexturedIndexedModel Tmodel in terrainsHashMap.Keys)
             {
-                prepareTexturedModel(Tmodel);
+                prepareTexturedModel(Tmodel, terrainsHashMap);
                 for (int i = 0; i < terrainsHashMap[Tmodel].Count; i++)
                 {
                     prepareInstance(terrainsHashMap[Tmodel][i]);
@@ -29,20 +29,28 @@ namespace TestEngine
 
         }
 
-        private void prepareTexturedModel(TexturedIndexedModel Tmodel)
+        private void prepareTexturedModel(TexturedIndexedModel Tmodel, Dictionary<TexturedIndexedModel, List<Terrain>> terrainsHashMap)
         {
-            //Console.WriteLine(string.Format("{0} {1}", Tmodel.metaData.shineDamper, Tmodel.metaData.reflectivity));
             shader.loadModelspecularLightData(Tmodel.metaData.shineDamper, Tmodel.metaData.reflectivity);
             Gl.BindVertexArray(Tmodel.vaoID);
             Gl.EnableVertexAttribArray(0);
             Gl.EnableVertexAttribArray(1);
             Gl.EnableVertexAttribArray(2);
-            UseTexture(TextureUnit.Texture0, Tmodel.TextureID);
+            bindTextures(terrainsHashMap[Tmodel][0]);
         }
 
         private void prepareInstance(Terrain terrain)
         {
             UseTransformationMatrix(terrain);
+        }
+
+        private void bindTextures(Terrain terrain)
+        {
+            UseTexture(TextureUnit.Texture0, terrain.texturePack.backgroundTextureRepresentedByblack.textureID);
+            UseTexture(TextureUnit.Texture1, terrain.texturePack.textureRepresntedByRed.textureID);
+            UseTexture(TextureUnit.Texture2, terrain.texturePack.textureRepresentedByGreen.textureID);
+            UseTexture(TextureUnit.Texture3, terrain.texturePack.textureRepresentedByBlue.textureID);
+            UseTexture(TextureUnit.Texture4, terrain.blendMap.textureID);
         }
 
         public void unbindTexturedModel()
