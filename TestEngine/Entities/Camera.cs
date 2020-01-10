@@ -50,27 +50,27 @@ namespace TestEngine
             {
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.W))
                 {
-                    position.z -= 2.5f;
+                    position.z -= 6f;
                 }
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.D))
                 {
-                    position.x += 2.5f;
+                    position.x += 6f;
                 }
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.A))
                 {
-                    position.x -= 2.5f;
+                    position.x -= 6f;
                 }
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.S))
                 {
-                    position.z += 2.5f;
+                    position.z += 6f;
                 }
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.Space))
                 {
-                    position.y += 2.5f;
+                    position.y += 6f;
                 }
                 if (Glfw.GetKey(window, (int)Glfw.KeyCode.C))
                 {
-                    position.y -= 2.5f;
+                    position.y -= 6f;
                 }
             }
         }

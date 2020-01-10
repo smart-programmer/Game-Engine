@@ -1,0 +1,42 @@
+// instantiat stuff
+uint vertexArray = Gl.GenVertexArray(); // returns th id of the vertex array
+uint buffer = Gl.GenBuffer(); // returns th id of the vertex buffer
+uint[] buffers = { buffer }; // array of the VBO's id's
+uint[] vertexArrays = { vertexArray }; // array of the VAO's id's
+// stor data in VBO
+Gl.BindBuffer(BufferTarget.ArrayBuffer, buffer);
+Gl.BufferData(BufferTarget.ArrayBuffer, (uint)(vertices.Length * sizeof(float)), vertices, BufferUsage.StaticDraw); // stor data in VBO
+Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
+// store vbo in vao
+Gl.BindVertexArray(vertexArray);
+Gl.BindBuffer(BufferTarget.ArrayBuffer, buffer);
+Gl.VertexAttribPointer(0, 3, VertexAttribType.Float, false, 0, IntPtr.Zero); // this line here stores the currently bound vbo in the currently bound vao
+Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
+
+
+// Render here
+Gl.ClearColor(1, 0, 0, 1);
+Gl.Clear(ClearBufferMask.ColorBufferBit);
+Gl.BindVertexArray(vertexArray);
+Gl.EnableVertexAttribArray(0);
+
+Gl.DrawArrays(PrimitiveType.Triangles, 0, vertices.Length / 3);
+Gl.DisableVertexAttribArray(0);
+Gl.BindVertexArray(0);
+
+
+
+
+  
+Gl.DeleteBuffers(vertexArrays);
+Gl.DeleteBuffers(buffers);
+
+
+
+
+
+
+ 
+
+// a vertex array is an array that gets passed to opengl and it has the information needed to draw something, in every index in a vertex array we store a type of information about the object we want to draw, for example we can store the vertex positions of an object in the first index of a vertex array and in the second index we can store vertex colors and in the third we can store the surface normals and so on. and those types of information(positions, colors, normals...) need to be saved someware then put in the vertex array that's why we save every type in something called a VBO(vertex buffer object) first and then we put the VBO in the vertex array in the corresponding index
+so now we have a VAO(vertex array object) that has VBO's stored in it's indices and the VBO's have information about and object that we want to draw
