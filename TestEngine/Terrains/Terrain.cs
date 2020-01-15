@@ -61,7 +61,7 @@ namespace TestEngine
             }
 
             int pointer = 0;
-            for (uint gz = 0; gz < VERTEX_COUNT - 1; gz++)
+            for (uint gz = 0; gz < VERTEX_COUNT - 1; gz++) // gz means grid zid wich is a loop for the z axis
             {
                 for (uint gx = 0; gx < VERTEX_COUNT - 1; gx++)
                 {

@@ -13,7 +13,7 @@ namespace TestEngine
         {
             uint vao = CreateVao();
             Gl.BindVertexArray(vao);
-            bindindicesBuffer(indices);
+            bindindicesBuffer(indices); // NOTE: the indices just magically get bound to the vao you don't need to put them in an attrib list
             uint Positionsvbo = CreateVbo();
             StoreDataInVbo(Positionsvbo, vertices);
             uint textureCoordsVBO = CreateVbo();
@@ -44,7 +44,7 @@ namespace TestEngine
 
         private static void StoreDataInVbo(uint vboid, float[] data)
         {
-            Gl.BindBuffer(BufferTarget.ArrayBuffer, vboid);
+            Gl.BindBuffer(BufferTarget.ArrayBuffer, vboid); 
             Gl.BufferData(BufferTarget.ArrayBuffer, (uint)(data.Length * sizeof(float)), data, BufferUsage.StaticDraw); // static draw because we're not going to change the content of this buffer object
             Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }

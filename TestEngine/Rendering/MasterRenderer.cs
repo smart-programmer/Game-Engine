@@ -112,7 +112,7 @@ namespace TestEngine
         private void prepareForRendering()
         {
             Gl.Enable(EnableCap.DepthTest);
-            // clear previous rendered colours and replace them with the color specified and clear the previous depth test result and replaceit with the new one every frame
+            // clear previous rendered colours and replace them with the color specified and clear the previous depth test result and replace it with the new one every frame
             Gl.ClearColor(sky.Color.R, sky.Color.G, sky.Color.B, 1);
             Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
         }

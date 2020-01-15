@@ -1,0 +1,6 @@
+read the terrain code in the engine adn watch these 2 videos 
+// those two videos will make you understand the terrain code if god wills
+            // https://www.youtube.com/watch?v=bG0uEXV6aHQ
+            // https://www.youtube.com/watch?v=vFvwyu_ZKfU
+
+and look at the image in the folder 

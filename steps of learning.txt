@@ -1,0 +1,7 @@
+1- how to draw:
+	we learn about the VAO and VBO and verticies and indices and uv's ...
+	we also learn about the difference between glDrawElements and DrawArrays
+
+2- learn about shaders:
+	we learn what is a program and what is a shader and how to create them and how to use them and why to use them ...
+	we learn how to map VAO attributes to the shader program and to also map uniform variables

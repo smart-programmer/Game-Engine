@@ -16,7 +16,7 @@ namespace TestEngine
             vertexShaderID = CreateShader(vertexshaderSource, ShaderType.VertexShader);
             fragmentShaderID = CreateShader(fragmentshaderSource, ShaderType.FragmentShader);
             uint[] shaders = { vertexShaderID, fragmentShaderID };
-            AttachShaders(shaders);
+            AttachShaders(shaders); // attach shaders to the program
             BindAttributes();
             Gl.LinkProgram(programID);
             Gl.ValidateProgram(programID);
@@ -46,21 +46,21 @@ namespace TestEngine
             Gl.ShaderSource(shaderID, shaderString);
             Gl.CompileShader(shaderID);
 
-            // debuging code 
+            // debug shader 
             int status;
             Gl.GetShader(shaderID, ShaderParameterName.CompileStatus, out status);
             if (status == Gl.TRUE)
             {
-                Console.WriteLine(String.Format("shader number {0} creation succeeded", shaderID));
+                Console.WriteLine(String.Format("shader number: {0}, of type: {1} (creation succeeded)", shaderID, type));
                 return shaderID;
             }
             else if (status == Gl.FALSE)
             {
-                Console.WriteLine(String.Format("shader number {0} creation failed", shaderID));
+                Console.WriteLine(String.Format("shader number: {0}, of type: {1} (creation failed)", shaderID, type));
                 Gl.GetShader(shaderID, ShaderParameterName.InfoLogLength, out int logLength);
                 int logMaxLength = 1024;
                 StringBuilder infoLog = new StringBuilder(logMaxLength);
-                Gl.GetShaderInfoLog(shaderID, 1024, out int infoLogLength, infoLog);
+                Gl.GetShaderInfoLog(shaderID, logMaxLength, out int infoLogLength, infoLog);
                 Console.WriteLine("Errors: \n{0}", infoLog.ToString());
 
                 return 0;

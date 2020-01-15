@@ -15,8 +15,8 @@ Gl.BindBuffer(BufferTarget.ArrayBuffer, 0);
 
 
 // Render here
-Gl.ClearColor(1, 0, 0, 1);
-Gl.Clear(ClearBufferMask.ColorBufferBit);
+Gl.ClearColor(1, 0, 0, 1); // set the color that we want to clear the previous drawn colors with it
+Gl.Clear(ClearBufferMask.ColorBufferBit); clear colors
 Gl.BindVertexArray(vertexArray);
 Gl.EnableVertexAttribArray(0);
 

@@ -1,0 +1,3 @@
+bring back Namespaces
+
+learn about textures how to use them and terrain texturing and shading then 3d then light and fog then player and player movement and how di i make the terrain

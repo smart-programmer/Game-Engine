@@ -33,7 +33,7 @@ namespace TestEngine
             // set the created window to be the current context
             Glfw.MakeContextCurrent(window);
 
-            ParsedObjFile obj = ObjFilesHandler.ParseObjFile("..\\..\\res/grassModel.obj"); // Q: how to pars an obj file
+            ParsedObjFile obj = ObjFilesHandler.ParseObjFile("..\\..\\res/grassModel.obj"); // Q: how to parse an obj file
             Texture texture2 = TextureLoader.getTexture("..\\..\\res/grassTexture.png"); // Q: what is a texture and how to load one
             TexturedIndexedModel grass = ModelsCreatorAndHandler.SetObject(obj.vertices, obj.indices, obj.uvTextureCoords, texture2, obj.surfaceNormals); // Q:what are indices and how to make a textured indexd model
             grass.metaData.shineDamper = 100f; // Q: what is this for?
@@ -72,8 +72,9 @@ namespace TestEngine
                 TextureLoader.getTexture("..\\..\\res/grassFlowers.png"),
                 TextureLoader.getTexture("..\\..\\res/path_resized.png"));
             terrains.Add(new Terrain(new Vertex3f(-2500, 0, -5000), new Vertex3f(0, 0, 0), 1, pack, TextureLoader.getTexture("..\\..\\res/blendMap.png")));
+            terrains.Add(new Terrain(new Vertex3f(-2500, 0, -5000), new Vertex3f(0, 0, 0), 1, pack, TextureLoader.getTexture("..\\..\\res/blendMap.png")));
 
-            entities.Add(player); // Q: why did i add the player to the entities list?
+            entities.Add(player); // Q: why did i add the player to the entities list? : because entities have the same renderer (EntityRenderer) NOTE: this model is going to have it's own different key in the entities hash map
             //entities.Add(entity1);
 
             MasterRenderer masterRenderer = new MasterRenderer(); // Q: why is there a master renderer
@@ -88,11 +89,7 @@ namespace TestEngine
                 player.ListenToPlayerMoveEvents(world.deltaTimeSec, window); // Q: how do we listen to player move events
                 masterRenderer.processEntities(entities); // Q: what is processing entities?
                 masterRenderer.processTerrains(terrains); // Q: what is processing terrains?
-                //for (int i = 0; i < entities.Count; i++)
-                //{
-                //    entities[i].increaseRotation(0f, 0.5f, 0f);
-                //}
-
+                
                 // Render here
                 masterRenderer.render(); // Q: what does render do?
 

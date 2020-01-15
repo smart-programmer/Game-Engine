@@ -88,7 +88,7 @@ namespace TestEngine
 
         public static void OrderInformation(ref List<textureCoordinate> uvs, List<normalCoordinate> normals, List<int> faces, int verticesCount, ref float[] newTextureUVS, ref float[] newNormals)
         {
-            textureCoordinate[] textureCoordinates = new textureCoordinate[(int)(verticesCount / 1.5)]; // because every vertex position has a texture coordinate attached to it but a texture coordinate is composed of xy only and vertex positions are xyz so to figure how many texture coordinates are going to be pared with vertex position we simply caculate the number of texture coordinates if they we only xy like tetxure cooridnates and we do that by multiplying it with 1.5 wich cuts the third column : read obj_loader_docs
+            textureCoordinate[] textureCoordinates = new textureCoordinate[(int)(verticesCount / 1.5)]; // because every vertex position has a texture coordinate attached to it but a texture coordinate is composed of xy only and vertex positions are xyz so to figure how many texture coordinates are going to be pared with vertex position we simply caculate the number of veretx positions if they were only xy like tetxure cooridnates and we do that by multiplying it with 1.5 wich cuts the third column : read obj_loader_docs
             normalCoordinate[] normalCoordinates = new normalCoordinate[verticesCount];
 
             for (int i = 0; i < faces.Count; i += 3)
@@ -109,7 +109,7 @@ namespace TestEngine
             int a = 0;
             for (int j = 0; j < textureCoordinatesArray.Length; j += 2)
             {
-                if (textureCoordinates[a] != null) // because somtimes a vertex position is not mentioned in faces so no texture coord will be set to it's location and that will be a null refrence pointer
+                if (textureCoordinates[a] != null) // because sometimes a vertex position is not mentioned in faces so no texture coord will be set to it's location and that will be a null refrence pointer
                 {
                     textureCoordinatesArray[j] = textureCoordinates[a].x;
                     textureCoordinatesArray[j + 1] = 1 - textureCoordinates[a].y;
