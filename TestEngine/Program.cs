@@ -1,7 +1,10 @@
 ﻿using System;
 using OpenGL;
 using Glfw3;
+using System.Reflection;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.NetworkInformation;
 
 
 namespace TestEngine
@@ -12,10 +15,13 @@ namespace TestEngine
 
         static void Main(string[] args)
         {
+            string current_directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string libsPath = Path.GetFullPath(Path.Combine(current_directory, @"..\..\..", "libs", "glfw-3.2.1.bin.WIN32", "lib-mingw"));
+
             Gl.Initialize();
 
             // set the directory for the main dll
-            Glfw.ConfigureNativesDirectory("..\\..\\..\\packages/glfw");
+            Glfw.ConfigureNativesDirectory(libsPath);
 
             // initialize glfw
             if (!Glfw.Init())
